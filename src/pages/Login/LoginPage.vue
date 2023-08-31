@@ -7,25 +7,50 @@ const isLoginShown = ref(true);
 const email = ref('');
 const password=ref('');
 async function login(){
+  try{
   const loginRequest = await signInWithEmailAndPassword(auth,email.value,password.value)
   console.log(loginRequest)
+  }catch(error){
+    alert(error)
+  }
 }
 async function signUp(){
-  const signUpRequest = await createUserWithEmailAndPassword(auth, email.value, password.value);
-  console.log(signUpRequest)
+  try{
+    const signUpRequest = await createUserWithEmailAndPassword(auth, email.value, password.value);
+    console.log(signUpRequest)
+  }catch(error){
+    alert(error)
+  }
+  
 }
 </script>
 
 <template>
+  
+  <div v-if="isLoginShown">
   <h1>Login</h1>
   <div class="credentials-container">
     <label for="email">Email</label>
-    <input type="email" />
+    <input v-model='email' type="email" />
     <label for="password">Contraseña</label>
-    <input type="password" />
+    <input v-model="password" type="password" />
   
   </div>
-  <button>Continuar</button>
+  <button @click="login">Iniciar Sesion</button>
+  <button @click="isLoginShown=false">Registrar</button>
+  </div>
+  <div v-else>
+    <h1>Registrar</h1>
+    <div class="credentials-container">
+      <label for="email">Email</label>
+      <input v-model="email" type="email" />
+      <label for="password">Contraseña</label>
+      <input v-model="password" type="password" />
+    
+    </div>
+    <button @click="isLoginShown=true">Cancelar</button>
+    <button @click="signUp">Registrar</button>
+    </div>
 </template>
 
 <style scoped>
@@ -54,4 +79,5 @@ button {
   border: none;
   border-radius: 15px;
 }
+
 </style>
