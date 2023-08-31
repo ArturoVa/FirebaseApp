@@ -1,13 +1,18 @@
 <script setup lang="ts">
 import {ref} from 'vue';
-import {signInWithEmailAndPassword} from 'firebase/auth';
+import {signInWithEmailAndPassword, createUserWithEmailAndPassword} from 'firebase/auth';
 import {auth} from '@/firebase'
 
 const isLoginShown = ref(true);
 const email = ref('');
 const password=ref('');
-function login(){
-  const loginRequest = signInWithEmailAndPassword(auth,email.value,password.value)
+async function login(){
+  const loginRequest = await signInWithEmailAndPassword(auth,email.value,password.value)
+  console.log(loginRequest)
+}
+async function signUp(){
+  const signUpRequest = await createUserWithEmailAndPassword(auth, email.value, password.value);
+  console.log(signUpRequest)
 }
 </script>
 
