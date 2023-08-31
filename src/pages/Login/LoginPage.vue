@@ -1,14 +1,33 @@
 <script setup lang="ts"></script>
 
 <template>
-  <h1>Login</h1>
-  <div class="credentials-container">
-    <label for="email">Email</label>
-    <input type="email" />
-    <label for="password">Contraseña</label>
-    <input type="password" />
+  <div>
+    <h1>Login</h1>
+    <div class="credentials-container">
+      <label for="email">Email</label>
+      <input type="email" />
+      <label for="password">Contraseña</label>
+      <input type="password" />
+    </div>
+    <div class="btn-container">
+      <button type="button">Iniciar Sesión</button>
+      <button type="button">Registrarme</button>
+    </div>
   </div>
-  <button>Continuar</button>
+  <div>
+    <h1>Registro</h1>
+    <div class="credentials-container">
+      <p>Crea una nueva cuenta con correo y contraseña</p>
+      <label for="email">Email</label>
+      <input type="email" />
+      <label for="password">Contraseña</label>
+      <input type="password" />
+    </div>
+    <div class="btn-container">
+      <button type="button">Iniciar Sesión</button>
+      <button type="button">Registrarme</button>
+    </div>
+  </div>
 </template>
 
 <style scoped>
@@ -36,5 +55,14 @@ button {
   font-size: 15px;
   border: none;
   border-radius: 15px;
+  cursor: pointer;
+}
+.btn-container {
+  margin: auto;
+  width: 300px;
+  display: flex;
+}
+p {
+  padding-inline: 10px;
 }
 </style>
