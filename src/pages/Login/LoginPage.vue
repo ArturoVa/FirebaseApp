@@ -17,36 +17,15 @@ async function signUp(){
 </script>
 
 <template>
-  <div  v-if="isLoginShown">
   <h1>Login</h1>
   <div class="credentials-container">
     <label for="email">Email</label>
-    <input v-model="email" type="email" />
+    <input type="email" />
     <label for="password">Contraseña</label>
-    <input v-model="password" type="password" />
-  </div>
-  <div class="btn-container">
-    <button type="button" @click="isLoginShown= false">Registrarse</button>
-    <button type="button">Iniciar sesion</button>
-  </div>
-  </div>
+    <input type="password" />
   
-  <div v-else>
-    <h1>Registro</h1>
-   
-    <div class="credentials-container">
-      <p>Crea una cuenta y contrase </p>
-      <label for="email">Email</label>
-      <input v-model='email' type="email" />
-      <label for="password">Contraseña</label>
-      <input v-model='password' type="password" />
-    </div>
-    <div class="btn-container">
-      <button type="button" @click="isLoginShown=true">Cancelar</button>
-      <button type="button">Iniciar sesion</button>
-    </div>
-    </div>
-   
+  </div>
+  <button>Continuar</button>
 </template>
 
 <style scoped>
@@ -74,15 +53,5 @@ button {
   font-size: 15px;
   border: none;
   border-radius: 15px;
-  cursor:pointer;
-}
-
-.btn-container{
-  width: 300px;
-  margin:auto;  
-  display: flex;
-}
-p{
-  padding-inline:10px;
 }
 </style>
