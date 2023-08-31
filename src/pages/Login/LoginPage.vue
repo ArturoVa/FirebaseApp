@@ -1,6 +1,7 @@
 <script setup lang="ts"></script>
 
 <template>
+  <div>
   <h1>Login</h1>
   <div class="credentials-container">
     <label for="email">Email</label>
@@ -8,7 +9,26 @@
     <label for="password">Contraseña</label>
     <input type="password" />
   </div>
-  <button>Continuar</button>
+  </div>
+  <div class="btn-container">
+    <button type="button">Registrarse</button>
+    <button type="button">Iniciar sesion</button>
+  </div>
+  <div>
+    <h1>Registro</h1>
+   
+    <div class="credentials-container">
+      <p>Registrese</p>
+      <label for="email">Email</label>
+      <input type="email" />
+      <label for="password">Contraseña</label>
+      <input type="password" />
+    </div>
+    </div>
+    <div class="btn-container">
+      <button type="button">Registrarse</button>
+      <button type="button">Iniciar sesion</button>
+    </div>
 </template>
 
 <style scoped>
@@ -36,5 +56,15 @@ button {
   font-size: 15px;
   border: none;
   border-radius: 15px;
+  cursor:pointer;
+}
+
+.btn-container{
+  width: 300px;
+  margin:auto;  
+  display: flex;
+}
+p{
+  padding-inline:10px;
 }
 </style>
