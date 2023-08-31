@@ -9,7 +9,6 @@ const password=ref('');
 async function login(){
   try{
   const loginRequest = await signInWithEmailAndPassword(auth,email.value,password.value)
-  console.log(loginRequest)
   }catch(error){
     alert(error)
   }
@@ -17,7 +16,7 @@ async function login(){
 async function signUp(){
   try{
     const signUpRequest = await createUserWithEmailAndPassword(auth, email.value, password.value);
-    console.log(signUpRequest)
+    isLoginShown.value=true
   }catch(error){
     alert(error)
   }
