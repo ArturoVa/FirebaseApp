@@ -1,34 +1,41 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import {ref} from 'vue';
+const isLoginShown = ref(true);
+const email = ref('');
+const password=ref('');
+</script>
 
 <template>
-  <div>
+  <div  v-if="isLoginShown">
   <h1>Login</h1>
   <div class="credentials-container">
     <label for="email">Email</label>
-    <input type="email" />
+    <input v-model="email" type="email" />
     <label for="password">Contraseña</label>
-    <input type="password" />
-  </div>
+    <input v-model="password" type="password" />
   </div>
   <div class="btn-container">
-    <button type="button">Registrarse</button>
+    <button type="button" @click="isLoginShown= false">Registrarse</button>
     <button type="button">Iniciar sesion</button>
   </div>
-  <div>
+  </div>
+  
+  <div v-else>
     <h1>Registro</h1>
    
     <div class="credentials-container">
-      <p>Registrese</p>
+      <p>Crea una cuenta y contrase </p>
       <label for="email">Email</label>
-      <input type="email" />
+      <input v-model='email' type="email" />
       <label for="password">Contraseña</label>
-      <input type="password" />
-    </div>
+      <input v-model='password' type="password" />
     </div>
     <div class="btn-container">
-      <button type="button">Registrarse</button>
+      <button type="button" @click="isLoginShown=true">Cancelar</button>
       <button type="button">Iniciar sesion</button>
     </div>
+    </div>
+   
 </template>
 
 <style scoped>
