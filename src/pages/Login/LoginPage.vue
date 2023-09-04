@@ -109,6 +109,7 @@ button {
   color: rgba(240, 248, 255, 0.822);
   border-radius: 5px;
   cursor: pointer;
+  transition: 0.5s;
 }
 #form{
   background-color:rgba(57, 38, 38, 0.313) ;
@@ -148,6 +149,5 @@ p {
 .input-container{
   display: flex;
   flex-direction: column;
-  
 }
 </style>
