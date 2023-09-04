@@ -39,7 +39,7 @@ onMounted(() => {
         </div>
         <div class="info">
             <h5>{{todo.title}}</h5>
-            <p>{{todo.expires_at}}</p>
+            <p>{{todo.expires_at.toDate().toLocaleDateString()}}</p> <!--Cambiamos el formato de la fecha-->
         <!--Titulo y fecha del todo-->
         </div>
     </div>
