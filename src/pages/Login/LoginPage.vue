@@ -2,6 +2,7 @@
 import {ref} from 'vue';
 import {signInWithEmailAndPassword, createUserWithEmailAndPassword} from 'firebase/auth';
 import {auth} from '@/firebase'
+import router from '@/router';
 
 const isLoginShown = ref(true);
 const email = ref('');
@@ -9,6 +10,7 @@ const password=ref('');
 async function login(){
   try{
   const loginRequest = await signInWithEmailAndPassword(auth,email.value,password.value)
+  router.push('/tareas')
   }catch(error){
     alert(error)
   }
