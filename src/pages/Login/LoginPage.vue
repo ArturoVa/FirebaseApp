@@ -29,15 +29,15 @@ async function signUp(){
 </script>
 
 <template>
-  
+  <div class="body">
   <div v-if="isLoginShown">
   <h1>Login</h1>
   <div class="credentials-container">
-    <div>
+    <div class="input-container">
       <label for="email">Email</label>
       <input v-model='email' type="email" />
     </div>
-    <div>
+    <div class="input-container">
       <label for="password">Contraseña</label>
       <input v-model="password" type="password" />
     </div>
@@ -51,11 +51,11 @@ async function signUp(){
     <h1>Registro</h1>
     <div class="credentials-container">
       <p>Crea una nueva cuenta con correo y contraseña</p>
-      <div>
+      <div class="input-container">
         <label for="email">Email: </label>
         <input v-model="email" type="email" />
       </div>
-      <div>
+      <div class="input-container">
         <label for="password">Contraseña: </label>
         <input v-model="password" type="password" />
       </div>
@@ -65,6 +65,7 @@ async function signUp(){
       <button class="register-btn" @click="signUp" type="button">Registrame</button>
     </div>
   </div>
+</div>
 </template>
 
 <style scoped>
@@ -120,4 +121,16 @@ p {
   text-align: center;
 }
 
+.body{
+  display: flex;
+  width: 100vw;
+  height: 100vh;
+  flex-direction: column;
+  justify-content: center;
+}
+.input-container{
+  display: flex;
+  flex-direction: column;
+  
+}
 </style>
