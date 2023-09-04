@@ -29,8 +29,11 @@ async function signUp(){
 </script>
 
 <template>
+
   <div class="body">
-  <div v-if="isLoginShown">
+  <div id="background"></div>
+  <div v-if="isLoginShown" class="centeredHolder">
+  <div id="form">
   <h1>Login</h1>
   <div class="credentials-container">
     <div class="input-container">
@@ -47,7 +50,8 @@ async function signUp(){
       <button class="register-btn" @click="isLoginShown = false" type="button">Registrarme</button>
     </div>
   </div>
-  <div v-else>
+  </div>
+  <div v-else class="centeredHolder">
     <h1>Registro</h1>
     <div class="credentials-container">
       <p>Crea una nueva cuenta con correo y contraseña</p>
@@ -76,9 +80,7 @@ h1 {
 .credentials-container {
   margin: auto;
   width: 500px;
-  background-color: whitesmoke;
-  border: 1px rgb(217, 217, 217) solid;
-  border-radius: 15px;
+  
 }
 
 .credentials-container > div {
@@ -89,23 +91,35 @@ h1 {
 input {
   padding: 7px 5px;
   border-radius: 10px;
-  border: 0.5px solid rgb(207, 207, 207);
+  border: 0.5px solid rgba(0, 0, 0, 0.519);
+  background-color: rgba(57, 38, 38, 0.313);
+  color: rgba(255, 255, 255, 0.692);
 }
-
+.centeredHolder{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 button {
   display: inline-block;
   margin: 10px;
   padding: 5px 10px;
-  border: 0.5px solid rgb(207, 207, 207);
-  background-color: white;
+  border: 0.5px solid rgba(0, 0, 0, 0.519);
+  background-color: rgba(57, 38, 38, 0.313);
+  color: rgba(240, 248, 255, 0.822);
   border-radius: 5px;
   cursor: pointer;
 }
-
+#form{
+  background-color:rgba(57, 38, 38, 0.313) ;
+  width: fit-content;
+  border-radius: 10px;
+}
 .login-btn:hover {
-  background-color: rgb(0, 75, 226);
+  background-color: rgb(9, 64, 175);
   color: white;
 }
+
 
 .register-btn:hover {
   background-color: rgb(133, 133, 133);
@@ -127,6 +141,9 @@ p {
   height: 100vh;
   flex-direction: column;
   justify-content: center;
+  background-image: url('https://images.pexels.com/photos/1054218/pexels-photo-1054218.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1');
+  background-size: cover;
+  
 }
 .input-container{
   display: flex;
