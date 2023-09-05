@@ -18,7 +18,7 @@ async function createTodo() {
       expires_at: expirationDate.value,
       status: 'pending'
     })
-    router.push('/tareas')
+    router.push('/todos')
   } catch (error) {
     alert(error)
   }

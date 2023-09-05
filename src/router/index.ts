@@ -9,14 +9,19 @@ const router = createRouter({
       component: () => import('@/pages/Login/LoginPage.vue')
     },
     {
-      path: '/tareas',
+      path: '/todos',
       name: 'todos',
       component: () => import('@/pages/Todos/TodosPage.vue')
     },
     {
-      path: '/crear-tarea',
+      path: '/create-todo',
       name: 'create-todo',
       component: () => import('@/pages/Create/CreateTodo.vue')
+    },
+    {
+      path:'/todo-page/:id',
+      name:'todo-page',
+      component: () => import('@/pages/Todo/TodoPage.vue')
     }
   ]
 })

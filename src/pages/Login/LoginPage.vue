@@ -12,7 +12,7 @@ const password=ref('');
 async function login(){
   try{
   const loginRequest = await signInWithEmailAndPassword(auth,email.value,password.value)
-  router.push('/tareas')
+  router.push('/todos')
   }catch(error){
     alert(error)
   }

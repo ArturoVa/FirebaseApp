@@ -1,5 +1,5 @@
-<script setup lang="ts">
-import { collection, getDocs } from 'firebase/firestore'
+<script setup>
+import { collection, getDocs, updateDoc } from 'firebase/firestore'
 import { db } from '@/firebase'
 import { onMounted, ref } from 'vue'
 import Navbar from '@/components/Navbar.vue'
@@ -7,11 +7,20 @@ import router from '@/router'
 
 const todos = ref()
 
+async function completeTodo(todo){
+    //Status => 'completed'
+    const docRef = doc(db,"todos", todo.id)
+    await updateDoc(docRef,{
+        status:'completed'
+    })
+}
+
 async function getTodos() {
   const collectionRef = collection(db, 'todos')
   const todosSnapshot = await getDocs(collectionRef)
   todos.value = todosSnapshot.docs.map((doc) => {
     return {
+      id:doc.id,
       title: doc.data().title,
       description: doc.data().description,
       status: doc.data().status,
@@ -20,9 +29,11 @@ async function getTodos() {
     }
   })
 }
-
+function goToTodo(id){
+  router.push(`/todo-page/${id}`)
+}
 function goToCreateTodo() {
-  router.push('/crear-tarea')
+  router.push('/create-todo')
 }
 
 onMounted(() => {
@@ -37,10 +48,10 @@ onMounted(() => {
   <div class="todos-container">
     <div v-for="todo in todos" class="todo-item">
       <div class="complete">
-        <button>Completar ✔</button>
+        <button @click="completeTodo(todo)">Completar ✔</button>
       </div>
       <div class="info">
-        <h5>{{ todo.title }}</h5>
+        <h5 :class="todo.status === 'pending' ?'red':'green'" @click="goToTodo(todo.id)">{{ todo.title }}</h5>
         <p>{{ todo.expires_at }}</p>
       </div>
     </div>
@@ -88,5 +99,11 @@ h2 {
 
 .info {
   width: 70%;
+}
+.red{
+  color:red;
+}
+.green{
+  color:green;
 }
 </style>
