@@ -2,11 +2,10 @@
 import { collection, getDocs } from 'firebase/firestore'
 import { db } from '@/firebase'
 import { onMounted, ref } from 'vue'
-import Navbar from "@/components/Navbar.vue"
+import Navbar from '@/components/Navbar.vue'
+import router from '@/router'
 
 const todos = ref()
-
-
 
 async function getTodos() {
   const collectionRef = collection(db, 'todos')
@@ -22,66 +21,72 @@ async function getTodos() {
   })
 }
 
+function goToCreateTodo() {
+  router.push('/crear-tarea')
+}
+
 onMounted(() => {
   getTodos() // Get Todos when the page loads for first time or after refreshing it
 })
 </script>
 
 <template>
-  <Navbar/>
+  <Navbar />
   <h2>Mi lista de tareas</h2>
-  <button class="create-btn">Crear una nueva tarea</button>
+  <button @click="goToCreateTodo" type="button" class="create-btn">Crear una nueva tarea</button>
   <div class="todos-container">
-    <div class="todo-item" v-for="todo in todos">
-        <div class="complete">
-        <!--Boton de completado-->
-        <button>Check</button>
-        </div>
-        <div class="info">
-            <h5>{{todo.title}}</h5>
-            <p>{{todo.expires_at.toDate().toLocaleDateString()}}</p> <!--Cambiamos el formato de la fecha-->
-        <!--Titulo y fecha del todo-->
-        </div>
+    <div v-for="todo in todos" class="todo-item">
+      <div class="complete">
+        <button>Completar ✔</button>
+      </div>
+      <div class="info">
+        <h5>{{ todo.title }}</h5>
+        <p>{{ todo.expires_at }}</p>
+      </div>
     </div>
   </div>
 </template>
 
 <style scoped>
-h2{
-    text-align:center;
+h2 {
+  text-align: center;
 }
-.create-btn{
-    cursor:pointer;
-    float: right;
-    padding:5px 10px;
-    border-radius:10px;
-    border:0;
-    background-color:blue;
-    color:white;
-    
+
+.create-btn {
+  padding: 5px 10px;
+  margin-right: 10px;
+  border-radius: 10px;
+  background-color: rgb(11, 87, 252);
+  color: white;
+  float: right;
+  cursor: pointer;
 }
-.todos-container{
-    margin:60px auto;
-    width:800px;
-    background-color:whitesmoke;
-    min-height:400px;
-    overflow:auto;
-    border:1px solid gray;
-    border-radius:20px;
+
+.todos-container {
+  margin: 60px auto;
+  width: 800px;
+  background-color: whitesmoke;
+  height: 400px;
+  overflow: auto;
+  border: 1px solid gray;
+  border-radius: 20px;
 }
+
 .todo-item {
-    margin: auto;
-    background-color: white;
-    border: 1px solid gray;
-    border-radius: 10px;
-    width: 80%;
-    display: flex;
-    align-items: center;
+  margin: auto;
+  background-color: white;
+  border: 1px solid gray;
+  border-radius: 10px;
+  width: 80%;
+  display: flex;
+  align-items: center;
 }
-.complete{
-    width:30%;
+
+.complete {
+  width: 30%;
 }
-.info{
-    width:70%;
+
+.info {
+  width: 70%;
 }
 </style>

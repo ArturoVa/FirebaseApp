@@ -15,8 +15,8 @@ const router = createRouter({
     },
     {
       path: '/crear-tarea',
-      name:'create-todo',
-      component:()=>import('@/pages/Create/CreateTodo.vue')
+      name: 'create-todo',
+      component: () => import('@/pages/Create/CreateTodo.vue')
     }
   ]
 })
