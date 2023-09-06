@@ -73,13 +73,6 @@ async function signUp(){
 </template>
 
 <style scoped>
-:root{
-  --eerie-black: #262522ff;
-  --onyx: #333737ff;
-  --cerulean: #457989ff;
-  --jet: #2C2D2Bff;
-  --cadet-gray: #88B0BCff;
-}
 h1 {
   text-align: center;
 }

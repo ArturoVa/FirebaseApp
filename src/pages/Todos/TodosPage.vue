@@ -7,7 +7,7 @@ import router from '@/router'
 
 const todos = ref()
 
-async function completeTodo(todo){
+async function completeTodo(todo, index){
     //Status => 'completed'
     
     try{
@@ -15,6 +15,7 @@ async function completeTodo(todo){
       await updateDoc(docRef,{
         status:'completed'
     })
+    todos.value[index].status='completed'
     }catch(error){
       alert(error);
     }
