@@ -55,9 +55,9 @@ onMounted(() => {
       <h2>Mi lista de tareas</h2>
       <button @click="goToCreateTodo" type="button" class="create-btn">Crear una nueva tarea</button>
       <div class="todos-container">
-        <div v-for="todo in todos" class="todo-item">
+        <div v-for="(todo,index) in todos" class="todo-item">
           <div class="complete">
-            <button @click="completeTodo(todo)">Completar ✔</button>
+            <button @click="completeTodo(todo, index)">Completar ✔</button>
           </div>
           <div class="info">
             <h5 :class="todo.status === 'pending' ?'red':'green'" @click="goToTodo(todo.id)">{{ todo.title }}</h5>
