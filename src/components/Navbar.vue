@@ -14,10 +14,17 @@ async function signOutUser() {
 </template>
 
 <style scoped>
+:root{
+  --eerie-black: #262522ff;
+  --onyx: #333737ff;
+  --cerulean: #457989ff;
+  --jet: #2C2D2Bff;
+  --cadet-gray: #88B0BCff;
+}
 nav {
   display: flex;
   padding: 15px 10px;
-  background-color: whitesmoke;
+  background-color: #457989ff;
   justify-content: space-between;
 }
 h3 {

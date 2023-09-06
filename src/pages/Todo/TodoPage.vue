@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import {doc, getDoc, updateDoc} from 'firebase/firestore';
+import {deleteDoc, doc, getDoc, updateDoc} from 'firebase/firestore';
 import {db} from "@/firebase";
 import {ref,onMounted} from "vue";
 import {useRoute} from "vue-router"; //
@@ -33,6 +33,11 @@ async function completeTodo(){
         status:'completed'
     })
 }
+async function deleteTodo(){
+    const docRef= doc(db,"todos",route.params.id as string);
+    await deleteDoc(docRef);
+    router.push('/todos');
+}
 onMounted(()=>{
     getTodo();
 })
@@ -50,7 +55,7 @@ onMounted(()=>{
     <div>
         <button @click="completeTodo()">Completar</button>
         <button @click="goToTodosPage()">Salir de las tareas</button>
-        <button>Borrar</button>
+        <button @click="deleteTodo()">Borrar</button>
     </div>
 </template>
 

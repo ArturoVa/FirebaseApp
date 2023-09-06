@@ -1,5 +1,5 @@
 <script setup>
-import { collection, getDocs, updateDoc } from 'firebase/firestore'
+import { collection, getDocs, updateDoc, doc } from 'firebase/firestore'
 import { db } from '@/firebase'
 import { onMounted, ref } from 'vue'
 import Navbar from '@/components/Navbar.vue'
@@ -9,10 +9,16 @@ const todos = ref()
 
 async function completeTodo(todo){
     //Status => 'completed'
-    const docRef = doc(db,"todos", todo.id)
-    await updateDoc(docRef,{
+    
+    try{
+      const docRef = doc(db,"todos", todo.id);
+      await updateDoc(docRef,{
         status:'completed'
     })
+    }catch(error){
+      alert(error);
+    }
+   
 }
 
 async function getTodos() {
@@ -42,17 +48,21 @@ onMounted(() => {
 </script>
 
 <template>
-  <Navbar />
-  <h2>Mi lista de tareas</h2>
-  <button @click="goToCreateTodo" type="button" class="create-btn">Crear una nueva tarea</button>
-  <div class="todos-container">
-    <div v-for="todo in todos" class="todo-item">
-      <div class="complete">
-        <button @click="completeTodo(todo)">Completar ✔</button>
-      </div>
-      <div class="info">
-        <h5 :class="todo.status === 'pending' ?'red':'green'" @click="goToTodo(todo.id)">{{ todo.title }}</h5>
-        <p>{{ todo.expires_at }}</p>
+  <div class="page">
+    <Navbar />
+    <div class="body">
+      <h2>Mi lista de tareas</h2>
+      <button @click="goToCreateTodo" type="button" class="create-btn">Crear una nueva tarea</button>
+      <div class="todos-container">
+        <div v-for="todo in todos" class="todo-item">
+          <div class="complete">
+            <button @click="completeTodo(todo)">Completar ✔</button>
+          </div>
+          <div class="info">
+            <h5 :class="todo.status === 'pending' ?'red':'green'" @click="goToTodo(todo.id)">{{ todo.title }}</h5>
+            <p>{{ todo.expires_at }}</p>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -61,6 +71,14 @@ onMounted(() => {
 <style scoped>
 h2 {
   text-align: center;
+  margin:0;
+}
+:root{
+  --eerie-black: #262522ff;
+  --onyx: #333737ff;
+  --cerulean: #457989ff;
+  --jet: #2C2D2Bff;
+  --cadet-gray: #88B0BCff;
 }
 
 .create-btn {
@@ -72,7 +90,16 @@ h2 {
   float: right;
   cursor: pointer;
 }
-
+.body{
+  height: 100%;
+  padding: 20px;
+}
+#app{
+  height: 100%;
+}
+.page{
+  height: 100vh;
+}
 .todos-container {
   margin: 60px auto;
   width: 800px;
